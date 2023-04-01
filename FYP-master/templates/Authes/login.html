@@ -1,0 +1,59 @@
+{% extends 'layout/base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% block content %}
+
+
+<div class="card">
+    <div class="card-body">
+        <h3>Login</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% bootstrap_button "Log In" type="submit" %}
+            <a name="" id="" class="btn btn-primary" href="{% url 'social:begin' 'github' %}" role="button">Login with Github <i class="fa-brands fa-github"></i></a><br><br>
+
+            <a href="{% url 'register' %}" class="nav-link">Don't have an account, Register Free!</a>
+            <a href="{% url 'forget_password' %}" class="nav-link">Forget password?</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+{% block css %}
+<style>
+    body {
+        background-color: rgb(44, 41, 39);
+        height: 100vh;
+    }
+
+    .hero {
+        transition: all 0.5s ease-in-out;
+    }
+
+    .card:hover {
+        background-color: rgb(244, 241, 239);
+    }
+    .card{
+        height: 45vh;
+        margin-left: 25%;
+        width: 35%;;
+      }
+</style>
+{% endblock %}
+{% block js %}
+<script>
+
+    // function that will rotate .hero when #is_username is focused
+    function rotateHero(elem, val) {
+        const hero = document.querySelector(elem);
+        hero.style.transform = `rotate(${val}deg)`;
+    }
+
+
+    // get the input field
+    document.querySelector('#id_username').addEventListener('focus', () => { rotateHero('.hero', -30); });
+    document.querySelector('#id_password').addEventListener('focus', () => { rotateHero('.hero', - 4); });
+</script>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'layout/base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% block content %}
+
+            <div class="card ">
+                <div class="card-body">
+                    <h3>Register Yourself</h3>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        {% bootstrap_button "Register" type="submit" %}
+                        <a href="{% url 'login' %}" class="nav-link lead my-3"><b>Already have an account. Log in</b></a>
+                    </form>
+                </div>
+            </div>
+     
+{% endblock %}
+
+{% block css %}
+<style>
+    body {
+        background-color: rgb(237, 147, 87);
+        height: 100vh;
+    }
+    .card{
+        height: 64vh;
+        margin-left: 25%;
+        width: 35%;;
+      }
+</style>
+{% endblock %}
